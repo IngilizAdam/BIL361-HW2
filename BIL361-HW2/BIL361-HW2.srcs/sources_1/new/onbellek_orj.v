@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 
-module onbellek (
+module onbellek_orj (
     // Saat ve reset
     input               clk_i,
     input               rst_i,
@@ -77,34 +77,6 @@ reg [31:0] arabellek_veri_ns;
 reg        arabellek_yaz_istek_r;
 reg        arabellek_yaz_istek_ns;
 
-// 128 satır, her satır 32 bayt, toplamda 4KB önbellek
-reg [255:0] hafiza_r [127:0];
-// 32 bitin en anlamsız 5 biti bayt seçimi, sonraki 7 biti satır indisi, kalan 20 biti etiket
-reg [19:0]  etiket   [127:0];
-// Her bir satir icin gecerli biti
-reg         gecerli  [127:0];
-// Geri-yaz politikası icin gereken kirli bitler
-reg         kirli    [127:0];
-
-wire [19:0] adres_etiketi;
-wire [6:0]  satir_indisi;
-wire [4:0]  bayt_secimi;
-
-reg         veri_okundu = 0;
-
-integer j;
-initial begin
-    for(j = 0; j < 128; j = j + 1) begin
-        gecerli[j] = 0;
-        kirli[j] = 0;
-    end
-end
-
-reg [31:0] iska_sayisi_r    = 0;
-reg [31:0] iska_sayisi_ns    = 0;
-reg [31:0] cikarma_sayisi_r = 0;
-reg [31:0] cikarma_sayisi_ns = 0;
-
 // Verilen veri obegi icerisinde ilgili baytlara veriyi yaz
 function [255:0] obege_yaz (
     input [255:0] veri_obegi,
@@ -173,63 +145,34 @@ always @* begin
     end
     // Anabellege okuma istegi gonderiyoruz, anabellek istegimizi kabul edene kadar (hazir ve gecerli) bekle.
     DURUM_OKU_ISTEK: begin
-        if (adres_etiketi == etiket[satir_indisi] && gecerli[satir_indisi]) begin
-            arabellek_obek_ns = hafiza_r[satir_indisi];
-            durum_ns = arabellek_yaz_istek_r ? DURUM_YAZ : DURUM_OKU;
+        anabellek_istek_gecerli_ns = 1;
+        anabellek_istek_yaz_gecerli_ns = 0;
+        anabellek_istek_adres_ns = arabellek_adres_r;
+        anabellek_istek_veri_ns = arabellek_obek_r;
+        if (anabellek_istek_hazir_i && anabellek_istek_gecerli_o) begin
+            anabellek_istek_gecerli_ns = 0;
+            durum_ns = DURUM_BEKLE;
         end
-        else begin
-            iska_sayisi_ns = iska_sayisi_r + 1;
-            anabellek_istek_gecerli_ns = 1;
-            anabellek_istek_yaz_gecerli_ns = 0;
-            anabellek_istek_adres_ns = arabellek_adres_r;
-            anabellek_istek_veri_ns = arabellek_obek_r;
-            if (anabellek_istek_hazir_i && anabellek_istek_gecerli_o) begin
-                anabellek_istek_gecerli_ns = 0;
-                durum_ns = DURUM_BEKLE;
-            end
-        end        
     end
     // Anabellege yazma istegi gonderiyoruz, anabellek istegimizi kabul edene kadar (hazir ve gecerli) bekle.
     DURUM_YAZ_ISTEK: begin
-        hafiza_r[satir_indisi] = arabellek_obek_r;
-        etiket[satir_indisi] = adres_etiketi;
-        gecerli[satir_indisi] = 1;
-        kirli[satir_indisi] = 1;
-        durum_ns = DURUM_BOSTA;
+        anabellek_istek_gecerli_ns = 1;
+        anabellek_istek_yaz_gecerli_ns = 1;
+        anabellek_istek_adres_ns = arabellek_adres_r;
+        anabellek_istek_veri_ns = arabellek_obek_r;
+        if (anabellek_istek_hazir_i && anabellek_istek_gecerli_o) begin
+            anabellek_istek_gecerli_ns = 0;
+            anabellek_istek_yaz_gecerli_ns = 0;
+            durum_ns = DURUM_BOSTA;
+        end
     end
     // Anabellege okuma istegimizi gonderdik, yanit vermesini bekliyoruz.
     DURUM_BEKLE: begin
         anabellek_yanit_hazir_ns = 1;
-        if (veri_okundu || (anabellek_yanit_hazir_o && anabellek_yanit_gecerli_i)) begin
-            veri_okundu = 1;
+        if (anabellek_yanit_hazir_o && anabellek_yanit_gecerli_i) begin
             anabellek_yanit_hazir_ns = 0;
             arabellek_obek_ns = anabellek_yanit_veri_i;
-            // Koyulacak satir doluysa cikartiyoruz ve kirliyse anabellege yaziyoruz.
-            if (gecerli[satir_indisi]) begin
-                cikarma_sayisi_ns = cikarma_sayisi_r + 1;
-                if (kirli[satir_indisi]) begin
-                    anabellek_istek_gecerli_ns = 1;
-                    anabellek_istek_yaz_gecerli_ns = 1;
-                    anabellek_istek_adres_ns = {etiket[satir_indisi][19:0], satir_indisi[6:0], bayt_secimi[4:0]};
-                    anabellek_istek_veri_ns = hafiza_r[satir_indisi];
-                    if (anabellek_istek_hazir_i && anabellek_istek_gecerli_o) begin
-                        anabellek_istek_gecerli_ns = 0;
-                        anabellek_istek_yaz_gecerli_ns = 0;
-                        gecerli[satir_indisi] = 0;
-                    end
-                end
-                else begin
-                    gecerli[satir_indisi] = 0;
-                end
-            end
-            else begin
-                hafiza_r[satir_indisi] = anabellek_yanit_veri_i;
-                etiket[satir_indisi] = adres_etiketi;
-                gecerli[satir_indisi] = 1;
-                kirli[satir_indisi] = 0;
-                veri_okundu = 0;
-                durum_ns = arabellek_yaz_istek_r ? DURUM_YAZ : DURUM_OKU;
-            end
+            durum_ns = arabellek_yaz_istek_r ? DURUM_YAZ : DURUM_OKU;
         end
     end
     // Anabellekten gelen veri obeginin uzerine veriyi yaz, sonra obegi geri anabellege yaz.
@@ -280,8 +223,6 @@ always @(posedge clk_i) begin
         arabellek_adres_r <= arabellek_adres_ns;
         arabellek_veri_r <= arabellek_veri_ns;
         arabellek_yaz_istek_r <= arabellek_yaz_istek_ns;
-        iska_sayisi_r <= iska_sayisi_ns;
-        cikarma_sayisi_r <= cikarma_sayisi_ns;
     end
 end
 
@@ -293,8 +234,5 @@ assign anabellek_yanit_hazir_o = anabellek_yanit_hazir_r;
 assign istek_hazir_o = istek_hazir_r;
 assign yanit_veri_o = yanit_veri_r;
 assign yanit_gecerli_o = yanit_gecerli_r;
-assign adres_etiketi = arabellek_adres_r[31:12];
-assign satir_indisi = arabellek_adres_r[11:5];
-assign bayt_secimi = arabellek_adres_r[4:0];
 
 endmodule

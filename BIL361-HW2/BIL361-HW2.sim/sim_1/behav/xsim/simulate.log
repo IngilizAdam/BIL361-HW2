@@ -1,3 +1,3 @@
 Time resolution is 1 ps
-[SIM] Test başarılı.
-$finish called at time : 51937377 ns : File "C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/sim_1/new/tb_onbellek.v" Line 106
+[SIM] Test basarili.
+$finish called at time : 2876257 ns : File "C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/sim_1/new/tb_onbellek.v" Line 106
