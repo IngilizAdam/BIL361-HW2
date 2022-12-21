@@ -178,12 +178,12 @@ always @* begin
             durum_ns = arabellek_yaz_istek_r ? DURUM_YAZ : DURUM_OKU;
         end
         else begin
-            iska_sayisi_ns = iska_sayisi_r + 1;
             anabellek_istek_gecerli_ns = 1;
             anabellek_istek_yaz_gecerli_ns = 0;
             anabellek_istek_adres_ns = arabellek_adres_r;
             anabellek_istek_veri_ns = arabellek_obek_r;
             if (anabellek_istek_hazir_i && anabellek_istek_gecerli_o) begin
+                iska_sayisi_ns = iska_sayisi_r + 1;
                 anabellek_istek_gecerli_ns = 0;
                 durum_ns = DURUM_BEKLE;
             end
@@ -206,7 +206,6 @@ always @* begin
             arabellek_obek_ns = anabellek_yanit_veri_i;
             // Koyulacak satir doluysa cikartiyoruz ve kirliyse anabellege yaziyoruz.
             if (gecerli[satir_indisi]) begin
-                cikarma_sayisi_ns = cikarma_sayisi_r + 1;
                 if (kirli[satir_indisi]) begin
                     anabellek_istek_gecerli_ns = 1;
                     anabellek_istek_yaz_gecerli_ns = 1;
@@ -216,10 +215,12 @@ always @* begin
                         anabellek_istek_gecerli_ns = 0;
                         anabellek_istek_yaz_gecerli_ns = 0;
                         gecerli[satir_indisi] = 0;
+                        cikarma_sayisi_ns = cikarma_sayisi_r + 1;
                     end
                 end
                 else begin
                     gecerli[satir_indisi] = 0;
+                    cikarma_sayisi_ns = cikarma_sayisi_r + 1;
                 end
             end
             else begin
