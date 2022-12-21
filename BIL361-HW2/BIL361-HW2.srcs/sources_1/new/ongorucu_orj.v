@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module ongorucu (
+module ongorucu_orj (
     // Saat ve reset
     input               clk_i,
     input               rst_i,
