@@ -1,17 +1,17 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: babanfive
-// Engineer: kalitimsal olarak bagin olan biri
+// Engineer: 
 // 
 // Create Date: 12/22/2022 12:04:33 AM
 // Design Name: 31
-// Module Name: tb_kahinabladevresihedef2023buyukongorucuprojesi
-// Project Name: BUYUK ONGORUCU PROJESI HEDEF 2023 OGUZHAN HOCAYI KORKUTAN TESTBENCH
+// Module Name: 
+// Project Name: 
 // Target Devices: 
 // Tool Versions: 
-// Description: I am desperate
+// Description: 
 // 
-// Dependencies: getting no bitches
+// Dependencies: 
 // 
 // Revision:
 // Revision 0.01 - File Created
@@ -42,6 +42,9 @@ module tb_ongorucu(
 	wire 	[31:0] 		atlanan_ps_o;
 	wire 				atlanan_gecerli_o;
 	
+	reg 	[499:0]  	tutarlilik_sayaci;
+	reg 	[499:0]		toplam_dallanma;
+	
 	ongorucu kahin(
 	.clk_i(clk_i),
 	.rst_i(rst_i),
@@ -54,29 +57,59 @@ module tb_ongorucu(
 	.atlanan_gecerli_o(atlanan_gecerli_o)
 	);
 	
+	integer i;
+	integer j;
     initial begin
-        guncelle_gecerli_i = 1;
-        guncelle_atladi_i = 0;
-        guncelle_ps_i = 0;
-        ps_i = 0;
-        buyruk_i = 0;
-
-        rst_i = 1;
-        repeat(10) @(posedge clk_i) #2;
-        guncelle_gecerli_i = 0;
-        rst_i = 0;
-
-
-        ps_i = 32'd31;
-        buyruk_i = 32'b0_000000_00000_00001_000_0110_0_1100011; // beq rs1 rs2 #12 || beq imm[11] = 0, imm [4:1] = 0110, func3 = 000, rs1 = 0, rs2 = 1, imm [10:5] = 0, imm[12] = 0; 
-        #10; // 1 cevrim bekle
-        guncelle_gecerli_i = 1'b0;
-        #10;
-        guncelle_gecerli_i = 1'b1;
-        guncelle_atladi_i = 1'b1;
-        guncelle_ps_i = 31'd31;
-        @(posedge clk_i) #10;
-        $finish;
+    	guncelle_gecerli_i = 1;
+    	guncelle_atladi_i = 0;
+    	guncelle_ps_i = 0;
+    	ps_i = 0;
+    	buyruk_i = 0;
+    	tutarlilik_sayaci = 0;
+    	toplam_dallanma = 0;
+    	
+    	rst_i = 1;
+    	repeat(10) @(posedge clk_i) #2;
+    	guncelle_gecerli_i = 0;
+    	rst_i = 0;
+    	
+    	for (i = 0; i < 5; i = i + 1) begin
+    		guncelle_gecerli_i = 1'b0;
+    		ps_i = 32'h0230_0010;
+    		buyruk_i = 32'h0820_cd63;
+    		toplam_dallanma = toplam_dallanma + 1;
+    		guncelle_ps_i = ps_i;
+    		#10;
+    		guncelle_gecerli_i = 1'b1;
+    		guncelle_atladi_i = i != 5;
+    		tutarlilik_sayaci = tutarlilik_sayaci + (guncelle_atladi_i == atlanan_gecerli_o); 
+    		#10;
+    		for (j = 1; j < i*2; j = j + 1) begin
+    			guncelle_gecerli_i = 1'b0;
+    			ps_i = 32'h0230_020e;
+    			buyruk_i = 32'hfe41_d0e3;
+    			toplam_dallanma = toplam_dallanma + 1;
+    			guncelle_ps_i = ps_i;
+    			#10;
+    			guncelle_gecerli_i = 1'b1;
+    			guncelle_atladi_i = i != i*2;
+    			tutarlilik_sayaci = tutarlilik_sayaci + (guncelle_atladi_i == atlanan_gecerli_o); 
+    			#10;
+    			
+    			guncelle_gecerli_i = 1'b0;
+                ps_i = 32'h0230_020e;
+                buyruk_i = 32'hfe41_d0e3;
+                toplam_dallanma = toplam_dallanma + 1;
+                guncelle_ps_i = ps_i;
+                #10;
+                guncelle_gecerli_i = 1'b1;
+                guncelle_atladi_i = i == i*2-1;
+                tutarlilik_sayaci = tutarlilik_sayaci + (guncelle_atladi_i == atlanan_gecerli_o); 
+                #10;
+    		end
+    	end
+    	
+		$finish;
     end
     
 endmodule

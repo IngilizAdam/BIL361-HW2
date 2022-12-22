@@ -20,6 +20,9 @@ module ongorucu (
 );
 
 localparam  OPCODE_DALLANMA  = 7'b1100011;
+localparam  FONKSIYON_BEQ = 3'b000;
+localparam  FONKSIYON_BNE = 3'b001;
+localparam  FONKSIYON_BLT = 3'b100;
 localparam  DURUM_GT         = 0;
 localparam  DURUM_ZT         = 1;
 localparam  DURUM_ZA         = 2;
@@ -32,7 +35,7 @@ reg [3:0]   genel_gecmis_r = 0;
 reg [3:0]   genel_gecmis_ns = 0;
 
 reg [2:0]   gshare_gecmis_tablosu_r [15:0];
-reg [1:0]   ongoru_tablosu_r        [7:0];
+reg [1:0]   ongoru_tablosu_r        [15:0][7:0];
 
 reg [3:0]   gshare_guncellenecek_adres;
 reg [2:0]   gshare_guncellenecek_veri;
@@ -47,13 +50,13 @@ wire [31:0] anlik;
 wire [3:0]  xor_sonuc;
 wire [3:0]  guncelle_xor_sonuc;
 
-integer i;
+integer i, j;
 initial begin
     for (i = 0; i < 16; i = i + 1) begin
         gshare_gecmis_tablosu_r[i] = 0;
-    end
-    for (i = 0; i < 8; i = i + 1) begin
-        ongoru_tablosu_r[i] = 0;
+        for (j = 0; j < 8; j = j + 1) begin
+            ongoru_tablosu_r[i][j] = 0;
+        end
     end
 end
 
@@ -63,10 +66,10 @@ always @* begin
     genel_gecmis_ns = genel_gecmis_r;
     gshare_guncelle = 0;
 
-    if (opcode == OPCODE_DALLANMA) begin
+    if (opcode == OPCODE_DALLANMA && (fonksiyon == FONKSIYON_BEQ || fonksiyon == FONKSIYON_BNE || fonksiyon == FONKSIYON_BLT)) begin
         atlanan_ps_cmb = ps_i + anlik;
 
-        case (ongoru_tablosu_r[gshare_gecmis_tablosu_r[xor_sonuc]])
+        case (ongoru_tablosu_r[xor_sonuc][gshare_gecmis_tablosu_r[xor_sonuc]])
         DURUM_GT: begin
             atlanan_gecerli_cmb = 0;
         end
@@ -87,7 +90,7 @@ always @* begin
         gshare_guncellenecek_veri = (gshare_gecmis_tablosu_r[guncelle_xor_sonuc] << 1) | guncelle_atladi_i;
         gshare_guncellenecek_adres = guncelle_xor_sonuc;
         ongoru_tablosu_guncellenecek_adres = gshare_gecmis_tablosu_r[guncelle_xor_sonuc];
-        case (ongoru_tablosu_r[gshare_gecmis_tablosu_r[guncelle_xor_sonuc]])
+        case (ongoru_tablosu_r[guncelle_xor_sonuc][gshare_gecmis_tablosu_r[guncelle_xor_sonuc]])
         DURUM_GT: begin
             if (guncelle_atladi_i) begin
                 ongoru_tablosu_guncellenecek_veri = DURUM_ZT;
@@ -98,7 +101,7 @@ always @* begin
         end
         DURUM_ZT: begin
             if (guncelle_atladi_i) begin
-                ongoru_tablosu_guncellenecek_veri = DURUM_ZA;
+                ongoru_tablosu_guncellenecek_veri = DURUM_GA;
             end
             else begin
                 ongoru_tablosu_guncellenecek_veri = DURUM_GT;
@@ -109,7 +112,7 @@ always @* begin
                 ongoru_tablosu_guncellenecek_veri = DURUM_GA;
             end
             else begin
-                ongoru_tablosu_guncellenecek_veri = DURUM_ZT;
+                ongoru_tablosu_guncellenecek_veri = DURUM_GT;
             end
         end
         DURUM_GA: begin
@@ -127,22 +130,19 @@ end
 
 always @(posedge clk_i) begin
     if (rst_i) begin
-        atlanan_ps_cmb <= 0;
-        atlanan_gecerli_cmb <= 0;
         genel_gecmis_r <= 0;
-        genel_gecmis_ns <= 0;
         for (i = 0; i < 16; i = i + 1) begin
-            gshare_gecmis_tablosu_r[i] <= 0;
-        end
-        for (i = 0; i < 8; i = i + 1) begin
-            ongoru_tablosu_r[i] <= 0;
+            gshare_gecmis_tablosu_r[i] = 0;
+            for (j = 0; j < 8; j = j + 1) begin
+                ongoru_tablosu_r[i][j] = 0;
+            end
         end
     end
     else begin
         genel_gecmis_r <= genel_gecmis_ns;
         if (gshare_guncelle) begin
             gshare_gecmis_tablosu_r[gshare_guncellenecek_adres] <= gshare_guncellenecek_veri;
-            ongoru_tablosu_r[ongoru_tablosu_guncellenecek_adres] <= ongoru_tablosu_guncellenecek_veri;
+            ongoru_tablosu_r[guncelle_xor_sonuc][ongoru_tablosu_guncellenecek_adres] <= ongoru_tablosu_guncellenecek_veri;
         end
     end
 end

@@ -1,7 +1,7 @@
-Running: xsim.dir/tb_ongorucu_behav/xsimk.exe -simmode gui -wdb tb_ongorucu_behav.wdb -simrunnum 0 -socket 64059
+Running: xsim.dir/tb_ongorucu_behav/xsimk.exe -simmode gui -wdb tb_ongorucu_behav.wdb -simrunnum 0 -socket 61471
 Design successfully loaded
-Design Loading Memory Usage: 7820 KB (Peak: 7820 KB)
-Design Loading CPU Usage: 0 ms
+Design Loading Memory Usage: 7936 KB (Peak: 7936 KB)
+Design Loading CPU Usage: 15 ms
 Simulation completed
-Simulation Memory Usage: 8456 KB (Peak: 8456 KB)
-Simulation CPU Usage: 0 ms
+Simulation Memory Usage: 8572 KB (Peak: 8572 KB)
+Simulation CPU Usage: 15 ms
