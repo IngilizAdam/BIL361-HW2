@@ -40,4 +40,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log onbellek.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source onbellek.tcl
+EAStep vivado -log ongorucu.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source ongorucu.tcl

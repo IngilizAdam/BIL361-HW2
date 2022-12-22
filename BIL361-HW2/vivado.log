@@ -2,10 +2,10 @@
 # Vivado v2022.2 (64-bit)
 # SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
 # IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
-# Start of session at: Thu Dec  1 20:47:27 2022
-# Process ID: 10144
+# Start of session at: Thu Dec 22 00:35:59 2022
+# Process ID: 10420
 # Current directory: C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent13552 C:\Users\hasan\Desktop\Projects\Vivado\BIL361-HW2\BIL361-HW2\BIL361-HW2.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent16328 C:\Users\hasan\Desktop\Projects\Vivado\BIL361-HW2\BIL361-HW2\BIL361-HW2.xpr
 # Log file: C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/vivado.log
 # Journal file: C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2\vivado.jou
 # Running On: Qwerty, OS: Windows, CPU Frequency: 2400 MHz, CPU Physical cores: 4, Host memory: 17044 MB
@@ -58,50 +58,93 @@ WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu216ld:part0:2.0 avail
 WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670:part0:2.0 available at D:/Xilinx/Vivado/2022.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu670/2.0/board.xml as part xczu67dr-fsve1156-2-i specified in board_part file is either invalid or not available
 WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670ld:part0:1.0 available at D:/Xilinx/Vivado/2022.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu670ld/1.0/board.xml as part xczu57dr-fsve1156-2-i specified in board_part file is either invalid or not available
 INFO: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.gen/sources_1'.
-CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/hasan/Downloads/tb_onbellek.v'.
 Scanning sources...
 Finished scanning sources
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Xilinx/Vivado/2022.2/data/ip'.
-open_project: Time (s): cpu = 00:00:12 ; elapsed = 00:00:09 . Memory (MB): peak = 1134.969 ; gain = 231.613
+open_project: Time (s): cpu = 00:00:30 ; elapsed = 00:00:21 . Memory (MB): peak = 1122.801 ; gain = 318.184
 update_compile_order -fileset sources_1
-export_ip_user_files -of_objects  [get_files C:/Users/hasan/Downloads/tb_onbellek.v] -no_script -reset -force -quiet
-remove_files  -fileset sim_1 C:/Users/hasan/Downloads/tb_onbellek.v
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+close [ open C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/sim_1/new/tb_ongorucu.v w ]
+add_files -fileset sim_1 C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/sim_1/new/tb_ongorucu.v
+update_compile_order -fileset sim_1
+set_property top tb_ongorucu [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+update_compile_order -fileset sim_1
 launch_simulation
 Command: launch_simulation 
-INFO: [Vivado 12-12493] Simulation top is 'tb_onbellek'
+INFO: [Vivado 12-12493] Simulation top is 'tb_ongorucu'
 WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
 WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
 INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
 INFO: [SIM-utils-51] Simulation object is 'sim_1'
 INFO: [SIM-utils-72] Using boost library from 'D:/Xilinx/Vivado/2022.2/tps/boost_1_72_0'
-INFO: [SIM-utils-54] Inspecting design source files for 'tb_onbellek' in fileset 'sim_1'...
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_ongorucu' in fileset 'sim_1'...
 INFO: [USF-XSim-97] Finding global include files...
 INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
 INFO: [USF-XSim-2] XSim::Compile design
 INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
-"xvlog --incr --relax -prj tb_onbellek_vlog.prj"
-INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+"xvlog --incr --relax -prj tb_ongorucu_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/sources_1/new/ongorucu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ongorucu
+ERROR: [VRFC 10-2953] 'ongoru_tablosu_r' is not a function [C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/sources_1/new/ongorucu.v:90]
+ERROR: [VRFC 10-1629] illegal case item comparison of a packed type with an unpacked type [C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/sources_1/new/ongorucu.v:91]
+ERROR: [VRFC 10-1629] illegal case item comparison of a packed type with an unpacked type [C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/sources_1/new/ongorucu.v:99]
+ERROR: [VRFC 10-1629] illegal case item comparison of a packed type with an unpacked type [C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/sources_1/new/ongorucu.v:107]
+ERROR: [VRFC 10-1629] illegal case item comparison of a packed type with an unpacked type [C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/sources_1/new/ongorucu.v:115]
+ERROR: [VRFC 10-8530] module 'ongorucu' is ignored due to previous errors [C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/sources_1/new/ongorucu.v:3]
+INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
+INFO: [USF-XSim-99] Step results log file:'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim/xvlog.log'
+ERROR: [USF-XSim-62] 'compile' step failed with error(s). Please check the Tcl console output or 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim/xvlog.log' file for more information.
+ERROR: [Vivado 12-4473] Detected error while running simulation. Please correct the issue and retry this operation.
+launch_simulation: Time (s): cpu = 00:00:01 ; elapsed = 00:00:05 . Memory (MB): peak = 1159.301 ; gain = 0.000
+ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-12493] Simulation top is 'tb_ongorucu'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from 'D:/Xilinx/Vivado/2022.2/tps/boost_1_72_0'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_ongorucu' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj tb_ongorucu_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/sources_1/new/ongorucu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ongorucu
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/sim_1/new/tb_ongorucu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_ongorucu
+INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
 INFO: [USF-XSim-3] XSim::Elaborate design
 INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
-"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_onbellek_behav xil_defaultlib.tb_onbellek xil_defaultlib.glbl -log elaborate.log"
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_ongorucu_behav xil_defaultlib.tb_ongorucu xil_defaultlib.glbl -log elaborate.log"
 Vivado Simulator v2022.2
 Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
-Running: D:/Xilinx/Vivado/2022.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_onbellek_behav xil_defaultlib.tb_onbellek xil_defaultlib.glbl -log elaborate.log 
+Running: D:/Xilinx/Vivado/2022.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_ongorucu_behav xil_defaultlib.tb_ongorucu xil_defaultlib.glbl -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
 Completed static elaboration
-INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
-INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.ongorucu
+Compiling module xil_defaultlib.tb_ongorucu
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_ongorucu_behav
+run_program: Time (s): cpu = 00:00:01 ; elapsed = 00:00:05 . Memory (MB): peak = 1175.328 ; gain = 0.000
+INFO: [USF-XSim-69] 'elaborate' step finished in '5' seconds
 INFO: [USF-XSim-4] XSim::Simulate design
 INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
 INFO: [USF-XSim-98] *** Running xsim
-   with args "tb_onbellek_behav -key {Behavioral:sim_1:Functional:tb_onbellek} -tclbatch {tb_onbellek.tcl} -log {simulate.log}"
+   with args "tb_ongorucu_behav -key {Behavioral:sim_1:Functional:tb_ongorucu} -tclbatch {tb_ongorucu.tcl} -log {simulate.log}"
 INFO: [USF-XSim-8] Loading simulator feature
 Time resolution is 1 ps
-source tb_onbellek.tcl
+source tb_ongorucu.tcl
 # set curr_wave [current_wave_config]
 # if { [string length $curr_wave] == 0 } {
 #   if { [llength [get_objects]] > 0} {
@@ -112,14 +155,287 @@ source tb_onbellek.tcl
 #   }
 # }
 # run 1000ns
-INFO: [USF-XSim-96] XSim completed. Design snapshot 'tb_onbellek_behav' loaded.
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'tb_ongorucu_behav' loaded.
 INFO: [USF-XSim-97] XSim simulation ran for 1000ns
-launch_simulation: Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1165.617 ; gain = 23.883
-run all
-[SIM] Test başarılı.
-$finish called at time : 51937377 ns : File "C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/sim_1/new/tb_onbellek.v" Line 106
-run: Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1169.023 ; gain = 2.156
+launch_simulation: Time (s): cpu = 00:00:04 ; elapsed = 00:00:12 . Memory (MB): peak = 1175.328 ; gain = 0.000
+relaunch_sim
+Command: launch_simulation -step compile -simset sim_1 -mode behavioral
+INFO: [Vivado 12-12493] Simulation top is 'tb_ongorucu'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from 'D:/Xilinx/Vivado/2022.2/tps/boost_1_72_0'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_ongorucu' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj tb_ongorucu_vlog.prj"
+INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
+Command: launch_simulation -step elaborate -simset sim_1 -mode behavioral
+INFO: [Vivado 12-12493] Simulation top is 'tb_ongorucu'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_ongorucu_behav xil_defaultlib.tb_ongorucu xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator v2022.2
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: D:/Xilinx/Vivado/2022.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_ongorucu_behav xil_defaultlib.tb_ongorucu xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+INFO: [USF-XSim-69] 'elaborate' step finished in '3' seconds
+Time resolution is 1 ps
+relaunch_sim: Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 1201.477 ; gain = 0.000
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+relaunch_sim
+Command: launch_simulation -step compile -simset sim_1 -mode behavioral
+INFO: [Vivado 12-12493] Simulation top is 'tb_ongorucu'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj tb_ongorucu_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/sources_1/new/ongorucu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ongorucu
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/sim_1/new/tb_ongorucu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_ongorucu
+INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
+Command: launch_simulation -step elaborate -simset sim_1 -mode behavioral
+INFO: [Vivado 12-12493] Simulation top is 'tb_ongorucu'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_ongorucu_behav xil_defaultlib.tb_ongorucu xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator v2022.2
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: D:/Xilinx/Vivado/2022.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_ongorucu_behav xil_defaultlib.tb_ongorucu xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.ongorucu
+Compiling module xil_defaultlib.tb_ongorucu
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_ongorucu_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '5' seconds
+Time resolution is 1 ps
+relaunch_sim: Time (s): cpu = 00:00:00 ; elapsed = 00:00:11 . Memory (MB): peak = 1201.477 ; gain = 0.000
+relaunch_sim
+Command: launch_simulation -step compile -simset sim_1 -mode behavioral
+INFO: [Vivado 12-12493] Simulation top is 'tb_ongorucu'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj tb_ongorucu_vlog.prj"
+INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
+Command: launch_simulation -step elaborate -simset sim_1 -mode behavioral
+INFO: [Vivado 12-12493] Simulation top is 'tb_ongorucu'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_ongorucu_behav xil_defaultlib.tb_ongorucu xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator v2022.2
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: D:/Xilinx/Vivado/2022.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_ongorucu_behav xil_defaultlib.tb_ongorucu xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+INFO: [USF-XSim-69] 'elaborate' step finished in '3' seconds
+Time resolution is 1 ps
+relaunch_sim: Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 1201.477 ; gain = 0.000
+relaunch_sim
+Command: launch_simulation -step compile -simset sim_1 -mode behavioral
+INFO: [Vivado 12-12493] Simulation top is 'tb_ongorucu'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj tb_ongorucu_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/sources_1/new/ongorucu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ongorucu
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/sim_1/new/tb_ongorucu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_ongorucu
+INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
+Command: launch_simulation -step elaborate -simset sim_1 -mode behavioral
+INFO: [Vivado 12-12493] Simulation top is 'tb_ongorucu'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_ongorucu_behav xil_defaultlib.tb_ongorucu xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator v2022.2
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: D:/Xilinx/Vivado/2022.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_ongorucu_behav xil_defaultlib.tb_ongorucu xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.ongorucu
+Compiling module xil_defaultlib.tb_ongorucu
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_ongorucu_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '4' seconds
+Time resolution is 1 ps
+$finish called at time : 135 ns : File "C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/sim_1/new/tb_ongorucu.v" Line 79
+relaunch_sim: Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 1202.348 ; gain = 0.543
+relaunch_sim
+Command: launch_simulation -step compile -simset sim_1 -mode behavioral
+INFO: [Vivado 12-12493] Simulation top is 'tb_ongorucu'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj tb_ongorucu_vlog.prj"
+INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
+Command: launch_simulation -step elaborate -simset sim_1 -mode behavioral
+INFO: [Vivado 12-12493] Simulation top is 'tb_ongorucu'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_ongorucu_behav xil_defaultlib.tb_ongorucu xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator v2022.2
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: D:/Xilinx/Vivado/2022.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_ongorucu_behav xil_defaultlib.tb_ongorucu xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+INFO: [USF-XSim-69] 'elaborate' step finished in '3' seconds
+Time resolution is 1 ps
+$finish called at time : 135 ns : File "C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/sim_1/new/tb_ongorucu.v" Line 79
+relaunch_sim: Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 1203.367 ; gain = 1.020
+relaunch_sim
+Command: launch_simulation -step compile -simset sim_1 -mode behavioral
+INFO: [Vivado 12-12493] Simulation top is 'tb_ongorucu'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj tb_ongorucu_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/sources_1/new/ongorucu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ongorucu
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/sim_1/new/tb_ongorucu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_ongorucu
+INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
+Command: launch_simulation -step elaborate -simset sim_1 -mode behavioral
+INFO: [Vivado 12-12493] Simulation top is 'tb_ongorucu'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_ongorucu_behav xil_defaultlib.tb_ongorucu xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator v2022.2
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: D:/Xilinx/Vivado/2022.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_ongorucu_behav xil_defaultlib.tb_ongorucu xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.ongorucu
+Compiling module xil_defaultlib.tb_ongorucu
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_ongorucu_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '4' seconds
+Time resolution is 1 ps
+$finish called at time : 135 ns : File "C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/sim_1/new/tb_ongorucu.v" Line 79
+relaunch_sim: Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 1204.547 ; gain = 0.547
 close_sim
 INFO: [Simtcl 6-16] Simulation closed
+open_run synth_1 -name synth_1
+Design is defaulting to impl run constrset: constrs_1
+Design is defaulting to synth run part: xc7k70tfbv676-1
+INFO: [Device 21-403] Loading part xc7k70tfbv676-1
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.456 . Memory (MB): peak = 1588.473 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 6984 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+WARNING: [Netlist 29-101] Netlist 'onbellek' is not ideal for floorplanning, since the cellview 'onbellek' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
+INFO: [Project 1-479] Netlist was created with Vivado 2022.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.019 . Memory (MB): peak = 1723.254 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+open_run: Time (s): cpu = 00:00:18 ; elapsed = 00:00:39 . Memory (MB): peak = 1828.305 ; gain = 623.402
+set_property top ongorucu [current_fileset]
+update_compile_order -fileset sources_1
+close_design
+reset_run synth_1
+INFO: [Project 1-1160] Copying file C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.runs/synth_1/onbellek.dcp to C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/utils_1/imports/synth_1 and adding it to utils fileset
+launch_runs synth_1 -jobs 4
+[Thu Dec 22 03:44:04 2022] Launched synth_1...
+Run output will be captured here: C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.runs/synth_1/runme.log
+open_run synth_1 -name synth_1
+Design is defaulting to impl run constrset: constrs_1
+Design is defaulting to synth run part: xc7k70tfbv676-1
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2375.863 ; gain = 0.000
+INFO: [Project 1-479] Netlist was created with Vivado 2022.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2375.863 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+close_design
+reset_run synth_1
+INFO: [Project 1-1161] Replacing file C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.srcs/utils_1/imports/synth_1/onbellek.dcp with file C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.runs/synth_1/ongorucu.dcp
+launch_runs synth_1 -jobs 4
+[Thu Dec 22 03:49:49 2022] Launched synth_1...
+Run output will be captured here: C:/Users/hasan/Desktop/Projects/Vivado/BIL361-HW2/BIL361-HW2/BIL361-HW2.runs/synth_1/runme.log
+open_run synth_1 -name synth_1
+Design is defaulting to impl run constrset: constrs_1
+Design is defaulting to synth run part: xc7k70tfbv676-1
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2388.484 ; gain = 0.000
+INFO: [Project 1-479] Netlist was created with Vivado 2022.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2388.484 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
 exit
-INFO: [Common 17-206] Exiting Vivado at Thu Dec  1 21:34:42 2022...
+INFO: [Common 17-206] Exiting Vivado at Thu Dec 22 04:01:47 2022...

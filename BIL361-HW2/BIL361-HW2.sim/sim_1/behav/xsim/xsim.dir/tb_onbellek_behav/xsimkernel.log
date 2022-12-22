@@ -1,7 +1,7 @@
-Running: xsim.dir/tb_onbellek_behav/xsimk.exe -simmode gui -wdb tb_onbellek_behav.wdb -simrunnum 0 -socket 60722
+Running: xsim.dir/tb_onbellek_behav/xsimk.exe -simmode gui -wdb tb_onbellek_behav.wdb -simrunnum 0 -socket 56933
 Design successfully loaded
-Design Loading Memory Usage: 7896 KB (Peak: 7896 KB)
+Design Loading Memory Usage: 7888 KB (Peak: 7888 KB)
 Design Loading CPU Usage: 0 ms
 Simulation completed
-Simulation Memory Usage: 18396 KB (Peak: 18396 KB)
-Simulation CPU Usage: 374 ms
+Simulation Memory Usage: 18356 KB (Peak: 18356 KB)
+Simulation CPU Usage: 311 ms
